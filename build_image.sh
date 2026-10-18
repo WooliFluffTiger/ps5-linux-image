@@ -291,6 +291,10 @@ else
 
         run_stage "Copy kernel config" \
             cp "$PATCHES_DIR/.config" "$LINUX_TMP_DIR/.config"
+            
+        run_stage "Stage AMDGPU firmware" bash -c '
+        mkdir -p "'"$LINUX_TMP_DIR"'/firmware/amdgpu"
+        cp "'"$PATCHES_DIR"'/firmware/amdgpu/ps5_vcn.bin" "'"$LINUX_TMP_DIR"'/firmware/amdgpu/"'
 
         mv "$LINUX_TMP_DIR" "$LINUX_DEFAULT_DIR"
         KERNEL_SRC="$LINUX_DEFAULT_DIR"
